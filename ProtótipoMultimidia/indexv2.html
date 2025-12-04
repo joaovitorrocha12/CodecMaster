@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codec Master - Vídeo para Sistemas Multimídia</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #212529;
+            --accent-color: #ffc107;
+            --text-dark: #343a40;
+            --text-light: #f8f9fa;
+            --bg-light: #f8f9fa;
+            --bg-dark: #343a40;
+            --font-heading: 'Inter', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: var(--font-body);
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3.2em;
+            color: var(--primary-color);
+        }
+
+        h2 {
+            font-size: 2.5em;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        h3 {
+            font-size: 1.6em;
+        }
+
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-1px);
+            text-decoration: none;
+        }
+
+        .section-separator {
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 50px auto;
+            border-radius: 2px;
+        }
+
+        header {
+            background-color: white;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-logo {
+            width: 180px;
+            height: auto;
+            display: block;
+        }
+
+        .logo {
+            font-size: 0;
+            line-height: 1;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--secondary-color);
+            font-weight: 600;
+            padding: 10px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background: var(--primary-color);
+            left: 0;
+            bottom: -5px;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(33, 37, 41, 0.9)), url('https://images.unsplash.com/photo-1517430816045-cd3935391e98?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            color: var(--text-light);
+            text-align: center;
+            padding: 120px 20px;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 4em;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            opacity: 0.9;
+        }
+
+        .intro-section {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .intro-section p {
+            max-width: 800px;
+            margin: 0 auto 15px auto;
+            font-size: 1.1em;
+        }
+
+        .video-compare-section {
+            padding: 80px 20px;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .video-compare-section h2 {
+            color: white;
+        }
+
+        .video-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .video-item {
+            background-color: var(--secondary-color);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-md);
+            flex: 1;
+            min-width: 320px;
+            max-width: 48%;
+        }
+
+        .video-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .video-item video {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 3px solid var(--accent-color);
+        }
+
+        .css-animation-section {
+            background-color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .animation-grid {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .animation-box {
+            background-color: var(--bg-light);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+            box-shadow: var(--shadow-md);
+            flex: 1;
+            min-width: 300px;
+            max-width: 45%;
+        }
+
+        .animation-box h3 {
+            color: var(--secondary-color);
+            margin-bottom: 25px;
+        }
+
+        .stage {
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px dashed var(--primary-color);
+            margin: 20px auto;
+            width: 90%;
+            max-width: 350px;
+        }
+
+        .ball {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            transform: translateX(-150px);
+        }
+
+        @keyframes move-across {
+            0% {
+                transform: translateX(-150px);
+                background-color: var(--primary-color);
+            }
+
+            100% {
+                transform: translateX(150px);
+                background-color: var(--accent-color);
+            }
+        }
+
+        .ball {
+            animation-name: move-across;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        .normal-speed-anim {
+            animation-duration: 2s;
+            background-color: var(--primary-color);
+        }
+
+        .slow-motion-anim {
+            animation-duration: 8s;
+            background-color: var(--accent-color);
+        }
+
+        .quiz-section {
+            padding: 80px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+
+        .quiz-section h2 {
+            color: white;
+            border-bottom-color: var(--accent-color);
+        }
+
+        .quiz-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: left;
+            color: var(--text-dark);
+        }
+
+        #quiz-question {
+            font-size: 1.5em;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            min-height: 70px;
+        }
+
+        .quiz-options li {
+            margin-bottom: 12px;
+            list-style: none;
+        }
+
+        .quiz-options label {
+            display: block;
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+        }
+
+        .quiz-options label:hover {
+            background-color: #dee2e6;
+        }
+
+        #quiz-feedback {
+            margin-top: 20px;
+            font-weight: 600;
+            font-size: 1.1em;
+            min-height: 25px;
+        }
+
+        .correct {
+            color: #28a745;
+        }
+
+        .wrong {
+            color: #dc3545;
+        }
+
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+
+            .site-logo {
+                margin-bottom: 15px;
+            }
+
+            nav ul {
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 3em;
+            }
+
+            .video-grid,
+            .animation-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .video-item,
+            .animation-box {
+                max-width: 100%;
+            }
+
+            .quiz-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <audio id="backgroundAudio" autoplay loop>
+        <source src="audio/audiomaior.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="audioControlBtn" class="btn" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+        🎶 Pausar Música
+    </button>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="imagemLogo/logosemfundo.png" alt="Codec Master Logo - Vídeo e Tecnologia" class="site-logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#hero">Início</a></li>
+                    <li><a href="#videos">Vídeos</a></li>
+                    <li><a href="#animacao">Animação</a></li>
+                    <li><a href="#quiz">Quiz</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="container">
+            <h1>Domine a Tecnologia do Vídeo Multimídia</h1>
+            <p>Explore as nuances da compressão, codecs e técnicas para uma experiência visual sem igual. Comece sua
+                jornada como um verdadeiro Codec Master!</p>
+            <a href="#videos" class="btn">Explorar Conteúdo</a>
+        </div>
+    </section>
+
+    <section class="intro-section">
+        <div class="container">
+            <h2>Bem-vindo ao Codec Master</h2>
+            <p>Neste protótipo, vamos explorar conceitos fundamentais de vídeo para sistemas multimídia, desde a
+                percepção da velocidade até a otimização da compressão e as tecnologias por trás dos codecs. Prepare-se
+                para testar seus conhecimentos!</p>
+        </div>
+    </section>
+
+    <div class="section-separator"></div>
+
+    <section id="videos" class="video-compare-section">
+        <div class="container">
+            <h2>Vídeo: Velocidade Normal vs. Câmera Lenta</h2>
+            <p>Entenda visualmente o impacto da taxa de quadros e da duração na percepção do movimento.</p>
+            <div class="video-grid">
+                <div class="video-item">
+                    <h3>Velocidade Normal</h3>
+                    <video controls muted autoplay loop>
+                        <source src="velocidadenormal/normal.MP4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-item">
+                    <h3>Câmera Lenta (Slow Motion)</h3>
+                    <video controls muted autoplay loop>
+                        <source src="cameralenta/cameralenta.MP4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-separator"></div>
+
+    <section id="animacao" class="css-animation-section">
+        <div class="container">
+            <h2>Animação CSS: Demonstração de Duração</h2>
+            <p>Uma ilustração simples de como a duração de uma animação afeta a percepção da velocidade.</p>
+            <div class="animation-grid">
+                <div class="animation-box">
+                    <h3>Velocidade Normal (2s)</h3>
+                    <div class="stage">
+                        <div class="ball normal-speed-anim"></div>
+                    </div>
+                </div>
+                <div class="animation-box">
+                    <h3>Câmera Lenta (8s)</h3>
+                    <div class="stage">
+                        <div class="ball slow-motion-anim"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-separator"></div>
+
+    <section id="quiz" class="quiz-section">
+        <div class="container">
+            <h2>Teste Seus Conhecimentos: O Quiz do Codec Master</h2>
+            <p>Prove que você domina o universo dos vídeos e codecs respondendo às 5 perguntas sorteadas.</p>
+
+            <div class="quiz-container">
+                <h3 id="quiz-question">Carregando pergunta...</h3>
+                <form id="quiz-form">
+                    <ul class="quiz-options" id="quiz-options"></ul>
+                    <div id="quiz-feedback"></div>
+                    <div class="quiz-navigation">
+                        <button type="button" id="submit-answer-btn" class="btn">Verificar Resposta</button>
+                        <button type="button" id="next-question-btn" class="btn" style="display: none;">Próxima
+                            Pergunta</button>
+                        <button type="button" id="restart-quiz-btn" class="btn" style="display: none;">Reiniciar
+                            Quiz</button>
+                    </div>
+                </form>
+                <div id="quiz-result"
+                    style="text-align: center; margin-top: 30px; font-size: 1.5em; font-weight: bold;"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>
+                Clique no link abaixo para acessar o documento completo:
+            </p>
+
+            <a href="https://docs.google.com/document/d/1ezqd4z6cZMNCSPmKFx3JTZrF9ryer22j/edit?usp=drive_link&ouid=110046663987428973676&rtpof=true&sd=true"
+                target="_blank">
+                Relatório Técnico
+            </a>
+
+            <p>
+                Integrantes: <br>
+                João Vitor Lima Rocha <br>
+                Guilherme Menezes <br>
+                Túlio Barboza <br>
+                José Eduardo de Lima neto <br>
+                Tarciso Filho
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const backgroundAudio = document.getElementById('backgroundAudio');
+        const audioControlBtn = document.getElementById('audioControlBtn');
+        let isPlaying = true;
+
+        backgroundAudio.play().catch(() => {
+            isPlaying = false;
+            audioControlBtn.textContent = '🎶 Tocar Música';
+        });
+
+        audioControlBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                backgroundAudio.pause();
+                audioControlBtn.textContent = '🎶 Tocar Música';
+            } else {
+                backgroundAudio.play();
+                audioControlBtn.textContent = '🎶 Pausar Música';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        const allQuestions = [
+            {
+                question: "Qual o principal objetivo de um CODEC de vídeo?",
+                options: ["Aumentar a resolução do vídeo", "Comprimir e descomprimir dados de vídeo", "Remover o áudio do vídeo", "Aplicar efeitos especiais"],
+                answer: "Comprimir e descomprimir dados de vídeo"
+            },
+            {
+                question: "O que significa 'framerate' ou taxa de quadros em vídeo?",
+                options: ["A duração total do vídeo", "O número de cores em cada pixel", "A quantidade de quadros exibidos por segundo", "A resolução horizontal do vídeo"],
+                answer: "A quantidade de quadros exibidos por segundo"
+            },
+            {
+                question: "Qual desses formatos de vídeo é mais comum para streaming online?",
+                options: ["AVI", "MOV", "MP4", "WMV"],
+                answer: "MP4"
+            },
+            {
+                question: "O que é 'bitrate' em vídeo?",
+                options: ["A velocidade da internet necessária para assistir ao vídeo", "O número de bits processados por segundo", "A quantidade de informações por segundo no vídeo", "A altura do vídeo em pixels"],
+                answer: "A quantidade de informações por segundo no vídeo"
+            },
+            {
+                question: "Qual a diferença entre compressão 'lossy' e 'lossless'?",
+                options: ["Lossy não perde qualidade, lossless perde", "Lossy perde qualidade, lossless não perde", "Ambas perdem qualidade", "Ambas não perdem qualidade"],
+                answer: "Lossy perde qualidade, lossless não perde"
+            },
+            {
+                question: "Para que serve um 'container' de vídeo (ex: .mp4, .mkv)?",
+                options: ["Para armazenar apenas o vídeo", "Para armazenar o vídeo, áudio, legendas e metadados juntos", "Para converter o vídeo para outro formato", "Para proteger o vídeo contra cópia"],
+                answer: "Para armazenar o vídeo, áudio, legendas e metadados juntos"
+            },
+            {
+                question: "O que é 'interlaced' e 'progressive scan'?",
+                options: ["São tipos de áudio", "São métodos de exibição de imagem em telas", "São codecs de compressão", "São formatos de legendas"],
+                answer: "São métodos de exibição de imagem em telas"
+            },
+            {
+                question: "Qual a unidade de medida para resolução de vídeo?",
+                options: ["Megabytes (MB)", "Kilobytes (KB)", "Pixels", "Hertz (Hz)"],
+                answer: "Pixels"
+            },
+            {
+                question: "O que é um 'keyframe' em compressão de vídeo?",
+                options: ["Um quadro que não pode ser comprimido", "Um quadro completo que não depende de outros para ser decodificado", "Um quadro que contém apenas áudio", "Um quadro que está em câmera lenta"],
+                answer: "Um quadro completo que não depende de outros para ser decodificado"
+            },
+            {
+                question: "Qual destes não é um codec de vídeo?",
+                options: ["H.264", "VP9", "AAC", "AV1"],
+                answer: "AAC"
+            },
+            {
+                question: "Qual a importância da latência em sistemas de vídeo ao vivo?",
+                options: ["Define a qualidade da imagem", "Indica o atraso entre a captura e a exibição", "Controla o tamanho do arquivo", "Determina a resolução do vídeo"],
+                answer: "Indica o atraso entre a captura e a exibição"
+            },
+            {
+                question: "O que é 'aspect ratio' em vídeo?",
+                options: ["A relação entre altura e largura do vídeo", "A resolução do vídeo", "A quantidade de pixels", "O brilho do vídeo"],
+                answer: "A relação entre altura e largura do vídeo"
+            },
+            {
+                question: "Qual termo descreve a capacidade de um vídeo manter a qualidade em diferentes tamanhos de tela?",
+                options: ["Interlace", "Progressive", "Responsividade", "Scalability"],
+                answer: "Scalability"
+            },
+            {
+                question: "Qual tecnologia é usada para transmitir vídeo em tempo real pela internet?",
+                options: ["HTTP", "FTP", "Streaming", "SMS"],
+                answer: "Streaming"
+            },
+            {
+                question: "O que significa 'transcodificação' de vídeo?",
+                options: ["Tocar o vídeo em um player diferente", "Mudar um vídeo de um formato ou codec para outro", "Cortar partes do vídeo", "Aumentar o volume do áudio"],
+                answer: "Mudar um vídeo de um formato ou codec para outro"
+            }
+        ];
+
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        const quizQuestion = document.getElementById('quiz-question');
+        const quizOptions = document.getElementById('quiz-options');
+        const quizFeedback = document.getElementById('quiz-feedback');
+        const submitBtn = document.getElementById('submit-answer-btn');
+        const nextBtn = document.getElementById('next-question-btn');
+        const restartBtn = document.getElementById('restart-quiz-btn');
+        const quizResult = document.getElementById('quiz-result');
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function startQuiz() {
+            shuffleArray(allQuestions);
+            currentQuestions = allQuestions.slice(0, 5);
+            currentQuestionIndex = 0;
+            score = 0;
+            quizResult.textContent = '';
+            submitBtn.style.display = 'inline-block';
+            nextBtn.style.display = 'none';
+            restartBtn.style.display = 'none';
+            quizFeedback.textContent = '';
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            if (currentQuestionIndex < currentQuestions.length) {
+                const q = currentQuestions[currentQuestionIndex];
+                quizQuestion.textContent = `Pergunta ${currentQuestionIndex + 1} de 5: ${q.question}`;
+                quizOptions.innerHTML = '';
+
+                shuffleArray(q.options);
+
+                q.options.forEach((option, index) => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <label>
+                            <input type="radio" name="answer" value="${option}">
+                            ${option}
+                        </label>
+                    `;
+                    quizOptions.appendChild(li);
+                });
+
+                document.querySelectorAll('input[name="answer"]').forEach(radio => radio.disabled = false);
+                submitBtn.style.display = 'inline-block';
+                nextBtn.style.display = 'none';
+
+            } else {
+                // Fim do Quiz
+                quizQuestion.textContent = "Quiz Concluído!";
+                quizOptions.innerHTML = '';
+                quizFeedback.textContent = '';
+                quizResult.textContent = `Sua pontuação final é: ${score} de ${currentQuestions.length}.`;
+                submitBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+                restartBtn.style.display = 'inline-block';
+            }
+        }
+
+        function submitAnswer() {
+            const selectedOption = document.querySelector('input[name="answer"]:checked');
+
+            if (!selectedOption) {
+                quizFeedback.textContent = "Por favor, selecione uma resposta.";
+                quizFeedback.className = 'wrong';
+                return;
+            }
+
+            const userAnswer = selectedOption.value;
+            const correctAnswer = currentQuestions[currentQuestionIndex].answer;
+
+            document.querySelectorAll('input[name="answer"]').forEach(radio => radio.disabled = true);
+
+            if (userAnswer === correctAnswer) {
+                quizFeedback.textContent = "✅ Resposta Correta!";
+                quizFeedback.className = 'correct';
+                score++;
+            } else {
+                quizFeedback.textContent = `❌ Resposta Incorreta. A resposta correta era: ${correctAnswer}`;
+                quizFeedback.className = 'wrong';
+            }
+
+            submitBtn.style.display = 'none';
+            nextBtn.style.display = 'inline-block';
+        }
+
+        function nextQuestion() {
+            quizFeedback.textContent = '';
+            currentQuestionIndex++;
+            nextBtn.style.display = 'none';
+            loadQuestion();
+        }
+
+        submitBtn.addEventListener('click', submitAnswer);
+        nextBtn.addEventListener('click', nextQuestion);
+        restartBtn.addEventListener('click', startQuiz);
+
+        startQuiz();
+
+    </script>
+</body>
+
+</html>

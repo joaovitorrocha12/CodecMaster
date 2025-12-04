@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demonstração da Animação </title>
+    
+    <style>
+        :root {
+            --primary-color: #007bff; 
+            --secondary-color: #333;   
+            --accent-color: #ffc107;  
+            --bg-light: #f4f4f9;     
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: var(--bg-light);
+            color: var(--secondary-color);
+        }
+
+        .css-animation-section {
+            background-color: white; 
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .animation-grid {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .animation-box {
+            background-color: var(--bg-light);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+            box-shadow: var(--shadow-md);
+            flex: 1;
+            min-width: 300px;
+            max-width: 45%;
+        }
+
+        .animation-box h3 {
+            color: var(--secondary-color);
+            margin-bottom: 25px;
+        }
+
+        .stage {
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px dashed var(--primary-color);
+            margin: 20px auto;
+            width: 90%;
+            max-width: 350px;
+            overflow: hidden; 
+        }
+
+        .ball {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            transform: translateX(-150px); 
+        }
+
+        @keyframes move-across {
+            0% {
+                transform: translateX(-150px); 
+                background-color: var(--primary-color);
+            }
+            100% {
+                transform: translateX(150px);  
+                background-color: var(--accent-color);
+            }
+        }
+
+        .ball {
+            
+            animation-name: move-across;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate; 
+        }
+
+        .normal-speed-anim { 
+            animation-duration: 2s; 
+            background-color: var(--primary-color);
+        }
+
+        .slow-motion-anim { 
+            animation-duration: 8s; 
+            background-color: var(--accent-color);
+        }
+
+    </style>
+</head>
+<body>
+
+    <section class="css-animation-section">
+        <h2>Demonstração de Animação CSS</h2>
+        <p>A mesma animação com durações (velocidades) diferentes.</p>
+
+        <div class="animation-grid">
+
+            <div class="animation-box">
+                <h3>Animação Rápida (2 segundos)</h3>
+                <div class="stage">
+                    <div class="ball normal-speed-anim"></div>
+                </div>
+            </div>
+
+            <div class="animation-box">
+                <h3>Animação Lenta (8 segundos)</h3>
+                <div class="stage">
+                    <div class="ball slow-motion-anim"></div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+</body>
+</html>
